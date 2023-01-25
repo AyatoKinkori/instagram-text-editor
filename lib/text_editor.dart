@@ -84,6 +84,7 @@ class _TextEditorState extends State<TextEditor> {
   late TextStyleModel _textStyleModel;
   late FontOptionModel _fontOptionModel;
   late Widget _doneButton;
+  late TextEditingController controller;
 
   @override
   void initState() {
@@ -100,11 +101,15 @@ class _TextEditorState extends State<TextEditor> {
 
     // Rebuild whenever a value changes
     _textStyleModel.addListener(() {
+      controller.selection = TextSelection.fromPosition(
+          TextPosition(offset: controller.text.length)); // テキストの最後に移動
       setState(() {});
     });
 
     // Rebuild whenever a value changes
     _fontOptionModel.addListener(() {
+      controller.selection = TextSelection.fromPosition(
+          TextPosition(offset: controller.text.length)); // テキストの最後に移動
       setState(() {});
     });
 
@@ -182,8 +187,7 @@ class _TextEditorState extends State<TextEditor> {
                     child: Container(
                       child: Center(
                         child: TextField(
-                          controller: TextEditingController()
-                            ..text = _textStyleModel.text,
+                          controller: controller..text = _textStyleModel.text,
                           onChanged: (value) => _textStyleModel.text = value,
                           maxLines: null,
                           keyboardType: TextInputType.multiline,
