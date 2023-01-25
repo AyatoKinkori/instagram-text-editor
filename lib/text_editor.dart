@@ -84,7 +84,7 @@ class _TextEditorState extends State<TextEditor> {
   late TextStyleModel _textStyleModel;
   late FontOptionModel _fontOptionModel;
   late Widget _doneButton;
-  late TextEditingController controller;
+  TextEditingController controller = TextEditingController();
 
   @override
   void initState() {
