@@ -102,18 +102,12 @@ class _TextEditorState extends State<TextEditor> {
     // Rebuild whenever a value changes
     _textStyleModel.addListener(() {
       // テキストの最後に移動
-      setState(() {
-        controller.selection = TextSelection.fromPosition(
-            TextPosition(offset: controller.text.length));
-      });
+      setState(() {});
     });
 
     // Rebuild whenever a value changes
     _fontOptionModel.addListener(() {
-      setState(() {
-        controller.selection = TextSelection.fromPosition(
-            TextPosition(offset: controller.text.length)); // テキストの最後に移動
-      });
+      setState(() {});
     });
 
     // Initialize decorator
@@ -190,7 +184,10 @@ class _TextEditorState extends State<TextEditor> {
                     child: Container(
                       child: Center(
                         child: TextField(
-                          controller: controller..text = _textStyleModel.text,
+                          controller: controller
+                            ..text = _textStyleModel.text
+                            ..selection = TextSelection.fromPosition(
+                                TextPosition(offset: controller.text.length)),
                           onChanged: (value) => _textStyleModel.text = value,
                           maxLines: null,
                           keyboardType: TextInputType.multiline,
