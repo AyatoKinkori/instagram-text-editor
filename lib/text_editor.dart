@@ -101,16 +101,19 @@ class _TextEditorState extends State<TextEditor> {
 
     // Rebuild whenever a value changes
     _textStyleModel.addListener(() {
-      controller.selection = TextSelection.fromPosition(
-          TextPosition(offset: controller.text.length)); // テキストの最後に移動
-      setState(() {});
+      // テキストの最後に移動
+      setState(() {
+        controller.selection = TextSelection.fromPosition(
+            TextPosition(offset: controller.text.length));
+      });
     });
 
     // Rebuild whenever a value changes
     _fontOptionModel.addListener(() {
-      controller.selection = TextSelection.fromPosition(
-          TextPosition(offset: controller.text.length)); // テキストの最後に移動
-      setState(() {});
+      setState(() {
+        controller.selection = TextSelection.fromPosition(
+            TextPosition(offset: controller.text.length)); // テキストの最後に移動
+      });
     });
 
     // Initialize decorator
